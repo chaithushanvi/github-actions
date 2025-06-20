@@ -1,0 +1,19 @@
+name: deploy_to_lamda
+
+on:
+  push:
+    branches:
+    - main
+jobs:
+  my_job:
+    name: lamda_deployment
+    runs-on: ubuntu-22.04
+    steps:
+     - uses: actions/checkout@v4
+     - name: list all the files
+       run: ls -larth
+     - name: zip a file
+       run: zip python.zip lambda_function.py
+     - name: list all the files
+       run: ls -larth
+     
