@@ -12,4 +12,8 @@ jobs:
      - uses: actions/checkout@v4
      - name: list all the files
        run: ls -larth
+     - name: zip a file
+       run: zip python.zip lambda_function.py
+     - name: list a file
+       run: ls -larth
      
