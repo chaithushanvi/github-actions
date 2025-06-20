@@ -1,27 +1,34 @@
-name: deploy_to_lamda
+name: deploy_to_lambda
 
 on:
   push:
     branches:
-    - main
+      - main
+
 jobs:
   my_job:
-    name: lamda_deployment
+    name: lambda_deployment
     runs-on: ubuntu-22.04
     steps:
-     - uses: actions/checkout@v4
-     - name: Configure AWS Credentials
-       uses: aws-actions/configure-aws-credentials@v3
-       with:
-         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-         aws-region: us-east-1
-     - name: list all the files
-       run: ls -larth
-     - name: zip a file
-       run: zip python.zip lambda_function.py
-     - name: list all the files
-       run: ls -larth
-     - name: Deploy to AWS Lambda
-       run: aws lambda update-function-code --function-name githubworkflowfunction --zip-file fileb://python.zip
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: list all the files
+        run: ls -larth
+
+      - name: zip a file
+        run: zip python.zip lambda_function.py
+
+      - name: list all the files again
+        run: ls -larth
+
+      - name: Deploy to AWS Lambda
+        run: aws lambda update-function-code --function-name githubworkflowfunction --zip-file fileb://python.zip
+
      
