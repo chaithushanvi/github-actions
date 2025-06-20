@@ -17,5 +17,5 @@ jobs:
      - name: list a file
        run: ls -larth
      - name: aws_cli_command
-       run: run: aws lambda update-function-code --function-name githubworkflowfunction --zip-file fileb://python.zip
+       run: aws lambda update-function-code --function-name githubworkflowfunction --zip-file fileb://python.zip
      
